@@ -31,9 +31,10 @@ const spectral = Spectral({
 });
 
 export const metadata: Metadata = {
-  title: "scrapyrience — Sejal ♥ Suyash explore Bangalore",
+  title: "Scrapyrience | Scrap-booking our experience",
   description:
     "A scrapbook of our favourite cafés, parks, restaurants, breweries and adventures across Bangalore.",
+  icons: { icon: "/logo.svg" },
 };
 
 export default function RootLayout({
