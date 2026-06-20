@@ -168,3 +168,39 @@ export function getPlace(id: string): Place | undefined {
 export function placesByCategory(catId: string): Place[] {
   return places.filter((p) => p.category === catId);
 }
+
+export type TimelineEntry = {
+  slug: string; // ISO day, e.g. "2026-04-12"
+  label: string; // original human string, e.g. "April 12, 2026"
+  time: number; // timestamp, for sorting
+  places: Place[]; // every place visited that day
+};
+
+// Only dates written as a specific day ("April 12, 2026") belong on the
+// timeline — bare years like "2026" (the stub entries) are skipped.
+const SPECIFIC_DATE = /^[A-Z][a-z]+ \d{1,2}, \d{4}$/;
+
+function toSlug(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+export function getTimeline(): TimelineEntry[] {
+  const byDay = new Map<string, TimelineEntry>();
+  for (const p of places) {
+    if (!SPECIFIC_DATE.test(p.date)) continue;
+    const d = new Date(p.date);
+    if (Number.isNaN(d.getTime())) continue;
+    const slug = toSlug(d);
+    const entry = byDay.get(slug);
+    if (entry) {
+      entry.places.push(p);
+    } else {
+      byDay.set(slug, { slug, label: p.date, time: d.getTime(), places: [p] });
+    }
+  }
+  // Newest day first.
+  return Array.from(byDay.values()).sort((a, b) => b.time - a.time);
+}
