@@ -21,6 +21,7 @@ export default function NavBar() {
   }, []);
 
   const isHome = pathname === "/";
+  const isTimeline = pathname.startsWith("/timeline");
   const isExperience =
     pathname.startsWith("/experiences") || pathname.startsWith("/places");
   const isAbout = pathname === "/about";
@@ -34,6 +35,13 @@ export default function NavBar() {
         <div className="nav-links">
           <Link href="/" className={"nav-link" + (isHome ? " on" : "")}>
             Home
+          </Link>
+
+          <Link
+            href="/timeline"
+            className={"nav-link" + (isTimeline ? " on" : "")}
+          >
+            Timeline
           </Link>
 
           <div className="dropdown" ref={ref}>

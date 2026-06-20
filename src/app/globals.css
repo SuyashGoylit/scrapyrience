@@ -1057,3 +1057,127 @@ body {
   z-index: 8;
   pointer-events: none;
 }
+
+/* ---------- timeline road ---------- */
+.tl-road {
+  position: relative;
+  max-width: 940px;
+  margin: 18px auto 0;
+}
+.tl-road-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.tl-road-edge {
+  fill: none;
+  stroke: #423d36;
+  stroke-width: 36;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tl-asphalt {
+  fill: none;
+  stroke: #6c665d;
+  stroke-width: 30;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tl-centerline {
+  fill: none;
+  stroke: #f2c14e;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 14 16;
+}
+.tl-stop {
+  fill: var(--color-paper);
+  stroke: var(--color-ink);
+  stroke-width: 2.5;
+}
+.tl-scooter {
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 3px 3px rgba(60, 42, 20, 0.3));
+}
+.tl-card {
+  position: absolute;
+  z-index: 2;
+  transform: translateY(-50%);
+  background: var(--color-paper);
+  padding: 18px 18px 16px;
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--color-ink);
+  box-shadow:
+    0 10px 20px rgba(60, 42, 20, 0.22),
+    0 2px 4px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition:
+    transform 0.22s cubic-bezier(0.34, 1.3, 0.5, 1),
+    box-shadow 0.22s;
+}
+.tl-card:hover {
+  transform: translateY(-50%) translateY(-5px) scale(1.015);
+  box-shadow: 0 20px 34px rgba(60, 42, 20, 0.3);
+  z-index: 5;
+}
+.tl-date {
+  display: inline-block;
+  font-family: var(--font-type);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-ink);
+  padding: 4px 10px;
+  border-radius: 2px;
+  transform: rotate(-1.5deg);
+}
+.tl-places {
+  list-style: none;
+  margin: 16px 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.tl-places li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tl-name {
+  font-family: var(--font-hand);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--color-ink);
+}
+.tl-area {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+.tl-open {
+  font-family: var(--font-type);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--color-terracotta);
+}
+.tl-card:hover .tl-open {
+  text-decoration: underline;
+}
+@media (max-width: 640px) {
+  .tl-name {
+    font-size: 24px;
+  }
+  .tl-card {
+    padding: 14px 14px 12px;
+  }
+}
